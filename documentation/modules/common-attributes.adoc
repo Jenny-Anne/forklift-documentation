@@ -2,7 +2,8 @@
 // Attributes for Forklift (upstream) are in ../upstream-attributes.adoc
 // text
 :kebab: Options menu image:kebab.png[title="Options menu",height=20]
-// If namespace must be formatted with backticks, use + instead.
+// Note: Backticks (`) block variable substitution. To format {namespace} in monospace
+// while allowing it to resolve, use +{namespace}+ instead of `{namespace}`.
 :namespace: openshift-mtv
 :oc: oc
 :ocp: Red Hat OpenShift
@@ -22,7 +23,7 @@
 :project-version: 2.11
 :mtv-plan: https://docs.redhat.com/en/documentation/migration_toolkit_for_virtualization/{project-version}/html/planning_your_migration_to_red_hat_openshift_virtualization/
 :mtv-mig: https://docs.redhat.com/en/documentation/migration_toolkit_for_virtualization/{project-version}/html/migrating_your_virtual_machines_to_red_hat_openshift_virtualization/
-:project-z-version: 2.11.4
+:project-z-version: 2.11.5
 :rhel-first: Red Hat Enterprise Linux (RHEL)
 :virt: OpenShift Virtualization
 :must-gather: registry.redhat.io/migration-toolkit-virtualization/mtv-must-gather-rhel8:{project-z-version}

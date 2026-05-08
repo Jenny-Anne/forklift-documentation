@@ -82,7 +82,7 @@ Vml4RGlza0xpYi5uZmNBaW8uU2Vzc2lvbi5CdWZTaXplSW42NEtCPTE2CnZpeERpc2tMaWIubmZjQWlv
 
 . In the config map `perf`, enter the Base64 string in the `binaryData` section, for example:
 +
-[source,terminal]
+[source,terminal,subs="attributes+"]
 ----
 apiVersion: v1
 kind: ConfigMap

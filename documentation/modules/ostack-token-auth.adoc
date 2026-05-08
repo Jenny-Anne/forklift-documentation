@@ -50,9 +50,9 @@ The output, referred to here as `<openstack_token_output>`, includes the `token`
 
 ** For authentication using a token with user ID:
 +
-[source,yaml]
+[source,yaml,subs="attributes+"]
 ----
-cat << EOF | oc apply -f -
+cat << EOF | {oc} apply -f -
 apiVersion: v1
 kind: Secret
 metadata:
@@ -72,9 +72,9 @@ EOF
 
 ** For authentication using a token with user name:
 +
-[source,yaml]
+[source,yaml,subs="attributes+"]
 ----
-cat << EOF | oc apply -f -
+cat << EOF | {oc} apply -f -
 apiVersion: v1
 kind: Secret
 metadata:

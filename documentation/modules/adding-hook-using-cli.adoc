@@ -26,7 +26,7 @@ You can run one pre-migration hook, one post-migration hook, or one of each per 
 .. Install the public key on the VM.
 .. Encode the private key in the Secret to base64.
 +
-[source,yaml]
+[source,yaml,subs="attributes+"]
 ----
 apiVersion: v1
 data:

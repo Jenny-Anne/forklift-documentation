@@ -52,9 +52,9 @@ The output, referred to here as `<openstack_credential_output>`, includes:
 
 ** For authentication using the application credential ID:
 +
-[source,yaml]
+[source,yaml,subs="attributes+"]
 ----
-cat << EOF | oc apply -f -
+cat << EOF | {oc} apply -f -
 apiVersion: v1
 kind: Secret
 metadata:
@@ -73,9 +73,9 @@ EOF
 
 ** For authentication using the application credential name:
 +
-[source,yaml]
+[source,yaml,subs="attributes+"]
 ----
-cat << EOF | oc apply -f -
+cat << EOF | {oc} apply -f -
 apiVersion: v1
 kind: Secret
 metadata:

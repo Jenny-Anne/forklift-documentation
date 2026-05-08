@@ -27,7 +27,7 @@ include::../modules/proc_accessing-default-validation-rules.adoc[leveloffset=+2]
 
 include::../modules/proc_creating-validation-rules.adoc[leveloffset=+2]
 
-include::../modules/proc_updating-validation-rules-version.adoc[leveloffset=+2]
+include::../modules/proc_updating-inventory-rules-version.adoc[leveloffset=+2]
 
 include::../modules/proc_retrieving-validation-service-json.adoc[leveloffset=+2]
 
@@ -35,9 +35,9 @@ include::../modules/con_about-hooks-for-migration-plans.adoc[leveloffset=+1]
 
 include::../modules/ref_migration-hook-workflow.adoc[leveloffset=+2]
 
-include::../modules/proc_adding-hook-using-ui.adoc[leveloffset=+2]
+include::../modules/proc_adding-migration-hook-via-ui.adoc[leveloffset=+2]
 
-include::../modules/proc_adding-hook-using-cli.adoc[leveloffset=+2]
+include::../modules/proc_adding-migration-hook-via-cli.adoc[leveloffset=+2]
 
 include::../modules/con_about-udn.adoc[leveloffset=+1]
 

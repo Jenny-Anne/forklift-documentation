@@ -16,9 +16,9 @@ include::../modules/ref_rhv-prerequisites.adoc[leveloffset=+1]
 
 include::../modules/ref_openstack-prerequisites.adoc[leveloffset=+1]
 
-include::../modules/proc_ostack-token-auth.adoc[leveloffset=+2]
+include::../modules/proc_openstack-token-authentication.adoc[leveloffset=+2]
 
-include::../modules/proc_ostack-app-cred-auth.adoc[leveloffset=+2]
+include::../modules/proc_openstack-application-credential-authentication.adoc[leveloffset=+2]
 
 include::../modules/ref_vmware-prerequisites.adoc[leveloffset=+1]
 

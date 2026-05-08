@@ -170,7 +170,7 @@ The *Plan details* page also includes five additional tabs, which are described 
 |Mappings
 |Hooks
 
-|Editable YAML `Plan` manifest based on your plan's details including source provider, network and storage maps, VMs, and any issues with your VMs
+|Editable YAML `Plan` manifest based on your plan's details, including source provider, network and storage maps, VMs, and any issues with your VMs
 |The VMs the plan migrates
 |Calculated resources: VMs, CPUs, and total memory for both total VMs and running VMs
 |Editable specification of the network and storage maps used by your plan

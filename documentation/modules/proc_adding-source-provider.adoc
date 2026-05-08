@@ -167,14 +167,14 @@ The URL of the uploaded archive is displayed in the *VDDK init image archive* te
 ** *Use the system CA certificate*: Migrate after validating the system CA certificate.
 ** *Skip certificate validation* : Migrate without validating a CA certificate.
 +
-.. To use a custom CA certificate, leave the *Skip certificate validation* switch toggled to left, and _either_ drag the CA certificate to the text box _or_ browse for it and click *Select*.
+.. To use a custom CA certificate, leave the *Skip certificate validation* switch toggled to the left, and _either_ drag the CA certificate to the text box _or_ browse for it and click *Select*.
 .. To use the system CA certificate, leave the *Skip certificate validation* switch toggled to the left, and leave the *CA certificate* text box empty.
 .. To skip certificate validation, toggle the *Skip certificate validation* switch to the right.
 +
 . Optional: Ask {project-short} to fetch a custom CA certificate from the provider's API endpoint URL.
 +
 .. Click *Fetch certificate from URL*. The *Verify certificate* window opens.
-.. If the details are correct, select the *I trust the authenticity of this certificate* checkbox, and then, click *Confirm*. If not, click *Cancel*, and then, enter the correct certificate information manually.
+.. If the details are correct, select the *I trust the authenticity of this certificate* checkbox and then click *Confirm*. If not, click *Cancel* and then enter the correct certificate information manually.
 +
 Once confirmed, the CA certificate will be used to validate subsequent communication with the API endpoint.
 
@@ -216,14 +216,14 @@ If you have Administrator privileges, you can see all projects, otherwise, you c
 ** *Use the system CA certificate*: Migrate after validating the system CA certificate.
 ** *Skip certificate validation* : Migrate without validating a CA certificate.
 +
-.. To use a custom CA certificate, leave the *Skip certificate validation* switch toggled to left, and _either_ drag the CA certificate to the text box _or_ browse for it and click *Select*.
+.. To use a custom CA certificate, leave the *Skip certificate validation* switch toggled to the left, and _either_ drag the CA certificate to the text box _or_ browse for it and click *Select*.
 .. To use the system CA certificate, leave the *Skip certificate validation* switch toggled to the left, and leave the *CA certificate* text box empty.
 .. To skip certificate validation, toggle the *Skip certificate validation* switch to the right.
 +
 . Optional: Ask {project-short} to fetch a custom CA certificate from the provider's API endpoint URL.
 +
 .. Click *Fetch certificate from URL*. The *Verify certificate* window opens.
-.. If the details are correct, select the *I trust the authenticity of this certificate* checkbox, and then, click *Confirm*. If not, click *Cancel*, and then, enter the correct certificate information manually.
+.. If the details are correct, select the *I trust the authenticity of this certificate* checkbox and then click *Confirm*. If not, click *Cancel* and then enter the correct certificate information manually.
 +
 Once confirmed, the CA certificate will be used to validate subsequent communication with the API endpoint.
 endif::[]
@@ -303,14 +303,14 @@ The SMB share must be accessible from both the Hyper-V host and the {ocp-short} 
 ** *Use the system CA certificate*: Migrate after validating the system CA certificate.
 ** *Skip certificate validation* : Migrate without validating a CA certificate.
 +
-.. To use a custom CA certificate, leave the *Skip certificate validation* switch toggled to left, and _either_ drag the CA certificate to the text box _or_ browse for it and click *Select*.
+.. To use a custom CA certificate, leave the *Skip certificate validation* switch toggled to the left, and _either_ drag the CA certificate to the text box _or_ browse for it and click *Select*.
 .. To use the system CA certificate, leave the *Skip certificate validation* switch toggled to the left, and leave the *CA certificate* text box empty.
 .. To skip certificate validation, toggle the *Skip certificate validation* switch to the right.
 +
 . Optional: Ask {project-short} to fetch a custom CA certificate from the provider's API endpoint URL.
 +
 .. Click *Fetch certificate from URL*. The *Verify certificate* window opens.
-.. If the details are correct, select the *I trust the authenticity of this certificate* checkbox, and then, click *Confirm*. If not, click *Cancel*, and then, enter the correct certificate information manually.
+.. If the details are correct, select the *I trust the authenticity of this certificate* checkbox and then click *Confirm*. If not, click *Cancel* and then enter the correct certificate information manually.
 +
 Once confirmed, the CA certificate will be used to validate subsequent communication with the API endpoint.
 endif::[]
@@ -375,14 +375,14 @@ If you have Administrator privileges, you can see all projects, otherwise, you c
 ** *Use the system CA certificate*: Migrate after validating the system CA certificate.
 ** *Skip certificate validation* : Migrate without validating a CA certificate.
 +
-.. To use a custom CA certificate, leave the *Skip certificate validation* switch toggled to left, and _either_ drag the CA certificate to the text box _or_ browse for it and click *Select*.
+.. To use a custom CA certificate, leave the *Skip certificate validation* switch toggled to the left, and _either_ drag the CA certificate to the text box _or_ browse for it and click *Select*.
 .. To use the system CA certificate, leave the *Skip certificate validation* switch toggled to the left, and leave the *CA certificate* text box empty.
 .. To skip certificate validation, toggle the *Skip certificate validation* switch to the right.
 +
 . Optional: Ask {project-short} to fetch a custom CA certificate from the provider's API endpoint URL.
 +
 .. Click *Fetch certificate from URL*. The *Verify certificate* window opens.
-.. If the details are correct, select the *I trust the authenticity of this certificate* checkbox, and then, click *Confirm*. If not, click *Cancel*, and then, enter the correct certificate information manually.
+.. If the details are correct, select the *I trust the authenticity of this certificate* checkbox and then click *Confirm*. If not, click *Cancel* and then enter the correct certificate information manually.
 +
 Once confirmed, the CA certificate will be used to validate subsequent communication with the API endpoint.
 endif::[]
@@ -422,14 +422,14 @@ If both *URL* and *Service account bearer token* are left blank, the local {ocp-
 ** *Use the system CA certificate*: Migrate after validating the system CA certificate.
 ** *Skip certificate validation* : Migrate without validating a CA certificate.
 +
-.. To use a custom CA certificate, leave the *Skip certificate validation* switch toggled to left, and _either_ drag the CA certificate to the text box _or_ browse for it and click *Select*.
+.. To use a custom CA certificate, leave the *Skip certificate validation* switch toggled to the left, and _either_ drag the CA certificate to the text box _or_ browse for it and click *Select*.
 .. To use the system CA certificate, leave the *Skip certificate validation* switch toggled to the left, and leave the *CA certificate* text box empty.
 .. To skip certificate validation, toggle the *Skip certificate validation* switch to the right.
 +
 . Optional: Ask {project-short} to fetch a custom CA certificate from the provider's API endpoint URL.
 +
 .. Click *Fetch certificate from URL*. The *Verify certificate* window opens.
-.. If the details are correct, select the *I trust the authenticity of this certificate* checkbox, and then, click *Confirm*. If not, click *Cancel*, and then, enter the correct certificate information manually.
+.. If the details are correct, select the *I trust the authenticity of this certificate* checkbox and then click *Confirm*. If not, click *Cancel* and then enter the correct certificate information manually.
 +
 Once confirmed, the CA certificate will be used to validate subsequent communication with the API endpoint.
 endif::[]
@@ -470,14 +470,14 @@ If both *URL* and *Service account bearer token* are left blank, the local {ocp-
 ** *Use the system CA certificate*: Migrate after validating the system CA certificate.
 ** *Skip certificate validation* : Migrate without validating a CA certificate.
 +
-.. To use a custom CA certificate, leave the *Skip certificate validation* switch toggled to left, and _either_ drag the CA certificate to the text box _or_ browse for it and click *Select*.
+.. To use a custom CA certificate, leave the *Skip certificate validation* switch toggled to the left, and _either_ drag the CA certificate to the text box _or_ browse for it and click *Select*.
 .. To use the system CA certificate, leave the *Skip certificate validation* switch toggled to the left, and leave the *CA certificate* text box empty.
 .. To skip certificate validation, toggle the *Skip certificate validation* switch to the right.
 +
 . Optional: Ask {project-short} to fetch a custom CA certificate from the provider's API endpoint URL.
 +
 .. Click *Fetch certificate from URL*. The *Verify certificate* window opens.
-.. If the details are correct, select the *I trust the authenticity of this certificate* checkbox, and then, click *Confirm*. If not, click *Cancel*, and then, enter the correct certificate information manually.
+.. If the details are correct, select the *I trust the authenticity of this certificate* checkbox and then click *Confirm*. If not, click *Cancel* and then enter the correct certificate information manually.
 +
 Once confirmed, the CA certificate will be used to validate subsequent communication with the API endpoint.
 endif::[]
@@ -490,7 +490,7 @@ ifdef::vmware[]
 +
 [NOTE]
 ====
-It might take a few minutes for the provider to have the status `Ready`.
+It might take a few minutes for the provider to move to the `Ready` status.
 ====
 endif::[]
 
@@ -498,7 +498,7 @@ ifdef::hyperv[]
 +
 [NOTE]
 ====
-It might take a few minutes for the provider to have the status `Ready`.
+It might take a few minutes for the provider to move to the `Ready` status.
 ====
 endif::[]
 

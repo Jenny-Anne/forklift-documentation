@@ -90,7 +90,7 @@ The name of the provider `Secret` CR.
 +
 [source,yaml,subs="attributes+"]
 ----
-$  cat << EOF | {oc} apply -f -
+$ cat << EOF | {oc} apply -f -
 apiVersion: forklift.konveyor.io/v1beta1
 kind: NetworkMap
 metadata:
@@ -177,7 +177,7 @@ The Hyper-V storage identifier (file path, volume GUID path, or storage pool nam
 +
 [source,yaml,subs="attributes+"]
 ----
-$  cat << EOF | {oc} apply -f -
+$ cat << EOF | {oc} apply -f -
 apiVersion: forklift.konveyor.io/v1beta1
 kind: Hook
 metadata:

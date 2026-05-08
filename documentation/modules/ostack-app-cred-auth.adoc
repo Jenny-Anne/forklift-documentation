@@ -59,7 +59,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: openstack-secret-appid
-  namespace: openshift-mtv
+  namespace: {namespace}
   labels:
     createdForProviderType: openstack
 type: Opaque
@@ -80,7 +80,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: openstack-secret-appname
-  namespace: openshift-mtv
+  namespace: {namespace}
   labels:
     createdForProviderType: openstack
 type: Opaque

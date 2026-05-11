@@ -60,7 +60,7 @@ When you ask {lightspeed-short} a question about {project-short}, {lightspeed-sh
 
 == How the integration works
 
-After you enable the `feature_lightspeed_integration` feature flag in the `ForkliftController` custom resource, the {project-short} Operator configures the integration with {lightspeed-full} by:
+After you enable the `feature_mcp_server` feature flag in the `ForkliftController` custom resource, the {project-short} Operator configures the integration with {lightspeed-full} by:
 
 * Deploying the {project-short} MCP (Model Context Protocol) server
 * Registering the MCP server with {lightspeed-full}

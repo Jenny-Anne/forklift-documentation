@@ -30,12 +30,12 @@ For information about installing and configuring {lightspeed-full}, see the link
 
 . Click the *YAML* tab to edit the resource configuration.
 
-. In the `spec:` section, locate or add the `feature_lightspeed_integration` parameter and set its value to `'true'`:
+. In the `spec:` section, locate or add the `feature_mcp_server` parameter and set its value to `'true'`:
 +
 [source,yaml]
 ----
 spec:
-  feature_lightspeed_integration: 'true'
+  feature_mcp_server: 'true'
 ----
 +
 [NOTE]

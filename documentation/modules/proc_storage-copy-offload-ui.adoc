@@ -11,7 +11,7 @@ You can use the storage copy offload feature of {project-first} to migrate {vmw}
 
 .Prerequisites
 
-In addition to the regular link:{mtv-plan}assembly_provider-specific-requirements-for-migration_mtv#vmware-prerequisites_mtv[{vmw} prerequisites], storage copy offload has the following additional prerequisites:
+In addition to the regular link:{mtv-plan}assembly_provider-specific-requirements-for-migration_mtv#ref_vmware-prerequisites_mtv[{vmw} prerequisites], storage copy offload has the following additional prerequisites:
 
 * One of the following storage systems, configured:
 ** Hitachi Vantara
@@ -47,12 +47,12 @@ Snapshots created by a warm migration do not affect storage copy offload migrati
 
 . In the {project-short} Operator, set the value of `feature_copy_offload` to `true` in `forklift-controller` by running the following command:
 +
-[source,terminal,subs="+quotes"]
+[source,terminal,subs="attributes+,+quotes"]
 ----
-$ oc patch forkliftcontrollers.forklift.konveyor.io forklift-controller --type merge -p '{"spec": {"feature_copy_offload": "true"}}' -n openshift-mtv
+$ {oc} patch forkliftcontrollers.forklift.konveyor.io forklift-controller --type merge -p '{"spec": {"feature_copy_offload": "true"}}' -n {namespace}
 ----
 
-. Create a `Secret` in the namespace in which the migration provider is set up, usually `openshift-mtv`. Include the credentials from the appropriate vendor in your `Secret`.
+. Create a `Secret` in the namespace in which the migration provider is set up, usually +{namespace}+. Include the credentials from the appropriate vendor in your `Secret`.
 +
 [width="100%",cols="22%,48%,15%,15%",options="header",]
 .Credentials for a Hitachi storage copy offload Secret
@@ -341,6 +341,6 @@ For HPE 3PAR, must also include Web Services API (WSAPI) port. Use the HPE 3PAR 
 +
 . In the UI complete the following steps:
 
-.. Create an ownerless storage map by using the procedure in link:{mig-plan}assembly_planning-migration-vmware_mtv#creating-form-based-storage-maps-ui-vmware_vmware[Creating ownerless storage maps using the form page of the {project-short} UI]. Use the *Offload plugin* named `vSphere XCOPY`.
+.. Create an ownerless storage map by using the procedure in link:{mig-plan}assembly_planning-migration-vmware_mtv#proc_creating-form-based-storage-maps-ui-vmware_vmware[Creating ownerless storage maps using the form page of the {project-short} UI]. Use the *Offload plugin* named `vSphere XCOPY`.
 
 .. Create a migration plan by using the procedure in link:{mtv-plan}assembly_planning-migration-vmware_mtv#proc_creating-plan-wizard-vmware_vmware[Creating a VMware vSphere migration plan by using the MTV wizard].

@@ -1,0 +1,84 @@
+// Module included in the following assemblies:
+//
+// * documentation/doc-Planning_your_migration/assemblies/assembly_planning-migration-vmware.adoc
+
+:_mod-docs-content-type: CONCEPT
+[id="con_about-deep-inspection_{context}"]
+= About Deep Inspection
+
+[role="_abstract"]
+Deep Inspection is an optional pre-migration analysis feature that provides a more thorough assessment of virtual machine (VM) compatibility for migration compared to standard inspection.
+
+== Inspection methods
+
+{project-short} supports two methods for inspecting VMs before migration:
+
+Standard inspection::
+Queries the source provider's API to collect VM metadata, including operating system information, disk configuration, and hardware settings. This method is fast and does not require additional resources, but relies on metadata reported by the provider.
+
+Deep Inspection::
+Launches a temporary worker pod in the {ocp-short} cluster that mounts and analyzes the VM's disk images directly. This method provides higher confidence in migration success by identifying guest-level issues that might not be visible through provider metadata alone.
+
+== How Deep Inspection works
+
+When you trigger Deep Inspection for a VM, {project-short} performs the following steps:
+
+. Creates a Conversion custom resource (CR) for each VM to be inspected.
+. Launches a temporary inspection pod in the +{namespace}+ namespace (or the namespace where {project-short} is installed).
+. Mounts the VM's disk images to the inspection pod using persistent volume claims (PVCs).
+. Runs `vm-migration-detective` to analyze the guest operating system, file systems, installed drivers, and other guest-level configurations.
+. Stores the inspection results in the Conversion CR and updates the VM's concerns in the Provider Inventory.
+. Cleans up the inspection pod and PVCs after inspection completes.
+
+== What Deep Inspection detects
+
+Deep Inspection can identify the following guest-level issues:
+
+* Missing VirtIO drivers required for {virt}
+* Unsupported guest operating systems or configurations
+* Specific partition layouts that might cause conversion issues
+* Dual-boot configurations and the correct root device paths
+* File system types and configurations
+* Operating system architecture and version details
+
+== When to use Deep Inspection
+
+Use Deep Inspection in the following scenarios:
+
+* When migrating critical or production VMs where you need high confidence in successful conversion.
+* When migrating legacy VMs where driver and operating system support status is uncertain.
+* When you need to identify the correct root device for dual-boot or multi-disk VMs.
+* When standard inspection shows warnings and you need more detailed information to assess migration feasibility.
+
+== Prerequisites and considerations
+
+Before you use Deep Inspection, consider the following:
+
+Resource requirements::
+Deep Inspection requires additional cluster resources to run inspection pods. Each inspection pod needs sufficient CPU, memory, and storage to mount and analyze VM disks. {project-short} limits concurrent inspections to 10 by default.
+
+Performance impact::
+Deep Inspection takes longer than standard inspection because it must transfer disk data and perform detailed analysis. The time required depends on the size of the VM's disks and the cluster's available resources.
+
+VDDK configuration::
+For {vmw} vSphere VMs, ensure that {vmw} Virtual Disk Development Kit (VDDK) is properly configured in your source provider. Deep Inspection uses VDDK to access VM disk images.
+
+Provider support::
+Deep Inspection is currently available only for {vmw} vSphere providers.
+
+[IMPORTANT]
+====
+Deep Inspection is a Technology Preview feature only. Technology Preview features
+are not supported with Red Hat production service level agreements (SLAs) and
+might not be functionally complete. Red Hat does not recommend using them
+in production. These features provide early access to upcoming product
+features, enabling customers to test functionality and provide feedback during
+the development process.
+====
+
+[role="_additional-resources"]
+.Additional resources
+* link:{mtv-mig}assembly_migrating-from-vmware_vmware#proc_inspecting-vms-ui_vmware[Inspecting VMs in the MTV UI]
+* link:{mtv-mig}assembly_migrating-from-vmware_vmware#proc_inspecting-vms-cli_vmware[Inspecting VMs by using the command line interface]
+* xref:ref_deep-inspection-validation-results_{context}[Understanding Deep Inspection validation results]
+* link:https://access.redhat.com/support/offerings/techpreview/[Red Hat Technology Preview Features Support Scope]

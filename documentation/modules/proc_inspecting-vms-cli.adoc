@@ -1,0 +1,135 @@
+// Module included in the following assemblies:
+//
+// * documentation/doc-Migrating_your_virtual_machines/assemblies/assembly_migrating-from-vmware.adoc
+
+:_mod-docs-content-type: PROCEDURE
+[id="proc_inspecting-vms-cli_{context}"]
+= Inspecting VMs by using the command line interface
+
+[role="_abstract"]
+You can run Deep Inspection on {vmw} vSphere virtual machines (VMs) by creating Conversion custom resources (CRs) from the command line. This approach provides more control over the inspection process and can be useful for automation or batch operations.
+
+[IMPORTANT]
+====
+Deep Inspection is a Technology Preview feature only. Technology Preview features
+are not supported with Red Hat production service level agreements (SLAs) and
+might not be functionally complete. Red Hat does not recommend using them
+in production. These features provide early access to upcoming product
+features, enabling customers to test functionality and provide feedback during
+the development process.
+====
+
+.Prerequisites
+
+* {vmw} vSphere source provider configured in {project-short}.
+* {vmw} Virtual Disk Development Kit (VDDK) properly configured for the source provider.
+* Sufficient cluster resources to run inspection worker pods.
+* `oc` CLI tool installed and access to the {ocp-short} cluster.
+* The managed object reference (moRef) ID of the VM you want to inspect.
+
+.Procedure
+
+. Create a Conversion CR YAML file for the VM you want to inspect. For example, `vm-inspection.yaml`:
++
+// SME REVIEW: Is this Conversion CR YAML structure correct? Verify apiVersion, spec.source.id, spec.source.name, spec.provider fields.
+[source,yaml,subs="attributes+"]
+----
+apiVersion: forklift.konveyor.io/v1beta1
+kind: Conversion
+metadata:
+  name: <vm_name>-inspection
+  namespace: {namespace}
+spec:
+  source:
+    id: <vm_moref_id>
+    name: <vm_name>
+  provider:
+    name: <provider_name>
+    namespace: {namespace}
+----
++
+where:
++
+--
+<vm_name>-inspection::
+Specifies a unique name for the Conversion CR. A common convention is to use the VM name followed by `-inspection`.
+
+{namespace}::
+Specifies the namespace where {project-short} is installed. The default is +{namespace}+.
+
+<vm_moref_id>::
+Specifies the managed object reference (moRef) ID of the VM. For information about retrieving the moRef ID, see xref:proc_retrieving-vmware-moref_{context}[Retrieving the moRef].
+
+<vm_name>::
+Specifies the name of the VM as it appears in the {vmw} vSphere inventory.
+
+<provider_name>::
+Specifies the name of the {vmw} vSphere provider CR.
+--
+
+. Create the Conversion CR:
++
+[source,terminal,subs="attributes+"]
+----
+$ oc create -f vm-inspection.yaml
+----
++
+{project-short} creates an inspection pod to perform the inspection.
+
+. Optional: To inspect multiple VMs concurrently, create additional Conversion CRs. {project-short} processes up to 10 concurrent inspections. Additional inspections are queued until resources become available.
+
+.Verification
+
+. Check the status of the Conversion CR:
++
+[source,terminal,subs="attributes+"]
+----
+$ oc get conversion <vm_name>-inspection -n {namespace} -o yaml
+----
++
+Review the `status` section of the output to see the inspection progress and results.
+
+. Monitor the inspection pod:
++
+[source,terminal,subs="attributes+"]
+----
+$ oc get pods -n {namespace} | grep <vm_name>-inspection
+----
++
+The pod status should progress from `Pending` to `Running` to `Completed`.
+
+. View the inspection pod logs:
++
+[source,terminal,subs="attributes+"]
+----
+$ oc logs <pod_name> -n {namespace}
+----
++
+The logs provide detailed information about the inspection process, including any errors encountered.
+
+. Retrieve the inspection results from the Conversion CR:
++
+// SME REVIEW: Is the jsonpath correct for inspection results? Should it be .status.inspectionResult or something else?
+[source,terminal,subs="attributes+"]
+----
+$ oc get conversion <vm_name>-inspection -n {namespace} -o jsonpath='{.status.inspectionResult}' | jq
+----
++
+The inspection results include information about the guest operating system, file systems, architecture, and any detected issues.
+
+. After the inspection completes, the inspection pod and associated persistent volume claims (PVCs) are automatically cleaned up by {project-short}.
+
+. Optional: To delete the Conversion CR after reviewing the results:
++
+[source,terminal,subs="attributes+"]
+----
+$ oc delete conversion <vm_name>-inspection -n {namespace}
+----
+
+[role="_additional-resources"]
+.Additional resources
+* link:{mtv-plan}assembly_planning-migration-vmware_vmware#con_about-deep-inspection_vmware[About Deep Inspection]
+* xref:proc_inspecting-vms-ui_{context}[Inspecting VMs in the MTV UI]
+* link:{mtv-plan}assembly_planning-migration-vmware_vmware#ref_deep-inspection-validation-results_vmware[Understanding Deep Inspection validation results]
+* xref:proc_retrieving-vmware-moref_{context}[Retrieving the VMware moRef]
+* link:https://access.redhat.com/support/offerings/techpreview/[Red Hat Technology Preview Features Support Scope]

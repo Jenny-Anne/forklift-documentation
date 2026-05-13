@@ -112,7 +112,7 @@ The logs provide detailed information about the inspection process, including an
 // SME REVIEW: Is the jsonpath correct for inspection results? Should it be .status.inspectionResult or something else?
 [source,terminal,subs="attributes+"]
 ----
-$ oc get conversion <vm_name>-inspection -n {namespace} -o jsonpath='{.status.inspectionResult}' | jq
+$ oc get conversion <vm_name>-inspection -n {namespace} -o json | jq '.status.inspectionResult'
 ----
 +
 The inspection results include information about the guest operating system, file systems, architecture, and any detected issues.

@@ -7,158 +7,45 @@
 = Understanding Deep Inspection validation results
 
 [role="_abstract"]
-When Deep Inspection completes, it provides detailed information about the guest operating system, file systems, and potential migration issues. You can use this information to assess migration feasibility and prepare virtual machines (VMs) for successful conversion.
+You can use Deep Inspection validation results to assess migration feasibility and prepare virtual machines for conversion. Review the concerns organized by category and severity to address critical issues before migration.
 
-== Inspection results
-
-When Deep Inspection completes successfully, it provides the following information:
-
-Operating system details::
-* Operating system name and version (for example, Red Hat Enterprise Linux 8.5)
-* Operating system architecture (for example, x86_64)
-* kernel version
-
-File system information::
-* List of detected file systems and their types (for example, ext4, xfs, ntfs)
-* Mount points and partition layouts
-* Root file system location
-
-Hardware and drivers::
-* Installed storage and network drivers
-* VirtIO driver availability and compatibility
-* Hardware architecture details
-
-Boot configuration::
-* Root device path (critical for multi-boot VMs)
-* Boot loader configuration
-* Partition schemes
-
-== Inspection status values
-
-The inspection process can result in one of the following status values:
-
-[cols="25%,75%",options="header"]
-|===
-|Status
-|Description
-
-|Not inspected
-|No Deep Inspection has been run for this VM. Only standard inspection (metadata collection) has been performed.
-
-|Pending
-|The inspection has been queued but has not yet started. This typically occurs when the maximum number of concurrent inspections (10) is already running.
-
-|Running
-|The inspection pod is currently mounting and analyzing the VM's disks.
-
-|Succeeded / Inspection passed
-|The inspection completed successfully. Detailed results are available in the VM details.
-
-|Failed
-|The inspection encountered an error and could not complete. Check the inspection pod logs for details.
-
-|Canceled
-|The inspection was manually canceled before completion.
-|===
-
-== Validation concerns and categories
+== Validation concerns
 
 Deep Inspection can identify concerns that are organized by category and severity:
 
 Changed Block Tracking (CBT) not enabled::
-Indicates that CBT is not enabled on the source VM. While this does not prevent migration, it can impact performance during warm migrations.
+CBT is not enabled on the source VM. This does not prevent migration. However, it can impact performance during warm migrations.
 
 VirtIO drivers missing::
-The VM lacks VirtIO drivers required for optimal performance in {virt}. This is a critical concern. Address it before migration.
+The VM lacks VirtIO drivers required for {virt}. This is a critical concern. Address it before migration.
 
 Unsupported operating system::
-The guest operating system is not supported for conversion or migration to {virt}. Refer to the {project-short} compatibility matrix for supported operating systems.
+The guest operating system is not supported for migration to {virt}. Check the {project-short} compatibility matrix for supported operating systems.
 
 File system issues::
-Unsupported or problematic file system configurations that might cause conversion failures.
+File system configurations that might cause conversion failures.
 
 Multi-boot configuration::
 The VM has multiple bootable operating systems. You must specify the correct root device path in the migration plan settings.
 
-== Assessment levels
-
-// TODO: Verify with SME - Confirm exact terminology for assessment levels (Warning, Error, Info)
-Each concern includes an assessment that indicates the severity and recommended action:
-
-Warning::
-A potential issue that should be reviewed but might not prevent migration. For example, CBT not being enabled.
-
-Error::
-A critical issue that will likely cause migration to fail if not addressed. For example, missing VirtIO drivers or unsupported operating systems.
-
-Info::
-Informational message about the VM configuration that does not require action but provides useful context.
-
-== Example inspection results
-
-The following is an example of inspection results displayed in the {project-short} UI:
-
-----
-Operating system:
-  Name: Red Hat Enterprise Linux
-  Version: 8.5
-  Architecture: x86_64
-
-File systems:
-  /dev/sda1: ext4
-  /dev/sda2: xfs
-  /dev/sdb1: ext4
-
-Root device: /dev/sda2
-
-Concerns:
-  VirtIO drivers missing (Error)
-  Assessment: VirtIO drivers are required for optimal performance.
-  The conversion might fail if the operating system cannot boot
-  without VirtIO drivers.
-----
-
-== Troubleshooting inspection failures
-
-// TODO: Verify with SME - Confirm common failure scenarios and error messages
-If an inspection fails, check the following:
-
-Inspection pod logs::
-View the pod logs to identify the specific error that caused the failure. Common errors include:
-+
-* Permission denied when accessing VM disks
-* Insufficient resources to mount VM disks
-* VDDK connection failures
-* Unsupported disk formats
-
-Resource constraints::
-Ensure the {ocp-short} cluster has sufficient CPU, memory, and storage to run the inspection pod and mount the VM's disks.
-
-VDDK configuration::
-Verify that VDDK is properly configured for the {vmw} vSphere provider and that the VDDK version is compatible with the source VM's virtual hardware version.
-
-Network connectivity::
-Ensure the inspection pod can reach the {vmw} vSphere provider to access VM disks.
-
-== Using inspection results to prepare for migration
+== Preparing for migration
 
 Use Deep Inspection results to prepare VMs for migration:
 
 Address critical concerns::
-Resolve any errors identified during inspection before starting the migration. For example, install VirtIO drivers on Windows VMs or verify operating system support.
+Resolve errors before you start the migration. For example, install VirtIO drivers on Windows VMs. Verify operating system support.
 
 Configure root device for multi-boot VMs::
-If Deep Inspection identifies a multi-boot configuration, use the root device path provided in the inspection results to configure the *Root device* setting in your migration plan.
+If Deep Inspection finds a multi-boot configuration, use the root device path in the inspection results. Configure the *Root device* setting in your migration plan.
 
 Review file system compatibility::
-Verify that all file systems detected are supported by {virt} and the target operating system version.
+Verify that all file systems are supported by {virt} and the target operating system version.
 
 Plan resource allocation::
-Use the disk and partition information to plan appropriate storage allocations in the destination environment.
+Use the disk and partition information to plan storage allocations in the destination environment.
 
 [role="_additional-resources"]
 .Additional resources
-* xref:con_about-deep-inspection_{context}[About Deep Inspection]
 * link:{mtv-mig}assembly_migrating-from-vmware_vmware#proc_inspecting-vms-ui_vmware[Inspecting VMs in the MTV UI]
 * link:{mtv-mig}assembly_migrating-from-vmware_vmware#proc_inspecting-vms-cli_vmware[Inspecting VMs by using the command line interface]
 * xref:proc_creating-plan-wizard-vmware_{context}[Creating a {vmw} vSphere migration plan by using the MTV wizard]
